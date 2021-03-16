@@ -2,10 +2,12 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Lab1_Makarevich.Rest.Context;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -27,10 +29,11 @@ namespace Lab1_Makarevich.Rest
         public void ConfigureServices(IServiceCollection services)
         {
 
-            services.AddControllers();
-            services.AddSwaggerGen(c =>
+            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+            var connectionString = Configuration.GetConnectionString("AzureDb");
+            services.AddDbContext<AzureDbContext>(options =>
             {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "Lab1_Makarevich.Rest", Version = "v1" });
+                options.UseSqlServer(connectionString);
             });
         }
 
