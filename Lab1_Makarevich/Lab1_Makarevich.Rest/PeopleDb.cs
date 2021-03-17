@@ -9,8 +9,7 @@ namespace Lab1_Makarevich.Rest
 {
     public class PeopleDb : DbContext
     {
-        public PeopleDb(DbContextOptions<PeopleDb> options)
-            : base (options)
+        public PeopleDb(DbContextOptions<PeopleDb> options) : base(options)
         {
 
         }

@@ -12,7 +12,6 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
-using Microsoft.OpenApi.Models;
 
 namespace Lab1_Makarevich.Rest
 {
@@ -21,6 +20,7 @@ namespace Lab1_Makarevich.Rest
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
+
         }
 
         public IConfiguration Configuration { get; }
@@ -28,13 +28,13 @@ namespace Lab1_Makarevich.Rest
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_3_0);
             var connectionString = Configuration.GetConnectionString("AzureDb");
-            services.AddDbContext<AzureDbContext>(options =>
+            services.AddDbContext<PeopleDb>(options =>
             {
                 options.UseSqlServer(connectionString);
             });
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -43,8 +43,6 @@ namespace Lab1_Makarevich.Rest
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
-                app.UseSwagger();
-                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "Lab1_Makarevich.Rest v1"));
             }
 
             app.UseHttpsRedirection();

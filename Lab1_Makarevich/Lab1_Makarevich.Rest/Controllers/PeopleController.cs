@@ -12,28 +12,22 @@ namespace Lab1_Makarevich.Rest.Controllers
     [ApiController]
     public class PeopleController : ControllerBase
     {
-       // public PeopleController(PeopleDb db)
-       // {
-
-       // }
+        public PeopleDb db;
+        public PeopleController(PeopleDb db)
+        {
+            this.db = db;
+        }
 
         [HttpGet]
         public IActionResult Get()
         {
-            var people = new List<Person>
-        {
-            new Person
-            {
-                FirstName = "Ilya",
-                LastName = "Makarevich",
-                PersonId = 1
-            }
-        };
+
+            var people = db.People.ToList();
+
 
             return Ok(people);
         }
-
     }
 
-    
+
 }
