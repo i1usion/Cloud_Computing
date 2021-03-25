@@ -7,7 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace lab1_Kuksa.Rest.Controllers
+namespace lab1_Makarevich.Rest.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
@@ -19,17 +19,17 @@ namespace lab1_Kuksa.Rest.Controllers
             this.db = db;
         }
 
-        ////Get
-        //[HttpGet]
+        //Get
+        [HttpGet]
 
-        //public IActionResult Get()
-        //{
+        public IActionResult Get()
+        {
 
-        //    var people = db.People.ToList();
+            var people = db.People.ToList();
 
 
-        //    return Ok(people);
-        //}
+            return Ok(people);
+        }
         ////Post
         //[HttpGet]
         //public async Task<ActionResult<Person>> PostPerson(Person person)
@@ -71,19 +71,19 @@ namespace lab1_Kuksa.Rest.Controllers
         //}
 
         //DELETE
-        [HttpDelete("{id}")]
-        public async Task<IActionResult> DeletePerson(long id)
-        {
-            var person = await db.People.FindAsync(id);
-            if (person == null)
-            {
-                return NotFound();
-            }
+        //[HttpDelete("{id}")]
+        //public async Task<IActionResult> DeletePerson(long id)
+        //{
+        //    var person = await db.People.FindAsync(id);
+        //    if (person == null)
+        //    {
+        //        return NotFound();
+        //    }
 
-            db.People.Remove(person);
-            await db.SaveChangesAsync();
+        //    db.People.Remove(person);
+        //    await db.SaveChangesAsync();
 
-            return NoContent();
-        }
+        //    return NoContent();
+        //}
     }
 }
