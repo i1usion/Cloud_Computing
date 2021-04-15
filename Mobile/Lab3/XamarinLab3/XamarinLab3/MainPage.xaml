@@ -2,9 +2,13 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:local="clr-namespace:XamarinLab3"
              mc:Ignorable="d"
              x:Class="XamarinLab3.MainPage">
+
+    <ContentPage.BindingContext>
+        <local:DataBinding/>
+    </ContentPage.BindingContext>
 
     <Grid>
         <Grid.RowDefinitions>
@@ -15,9 +19,13 @@
         <Image x:Name="imgPhoto" />
         <StackLayout Grid.Row="1">
             <Button x:Name="btnCamera" Text="Take a Photo" />
-            <Entry x:Name="entFirstName" Placeholder="First name" />
-            <Entry x:Name="entLastName" Placeholder="Last name" />
-            <Entry x:Name="entPhoneNumber" Placeholder="Phone number" Keyboard="Telephone" />
+            <Entry x:Name="entFirstName" Text="{Binding LabelName}"  Placeholder="First name" />
+            <Entry x:Name="entLastName" Text="{Binding LabelLastName}" Placeholder="Last name" />
+            <Entry x:Name="entPhoneNumber" Text="{Binding LabelPhoneNumber}" Placeholder="Phone number" Keyboard="Telephone" />
+
+            <Label Text="{Binding BindingName}" Margin="5, 0, 0, 0"/>
+            <Label Text="{Binding BindingLastName}" Margin="5, 0, 0, 0"/>
+            <Label Text="{Binding BindingPhoneNumber}" Margin="5, 0, 0, 0"/>
         </StackLayout>
         <StackLayout Grid.Row="2" VerticalOptions="EndAndExpand">
             <Button x:Name="btnSave" Text="Save data" />
